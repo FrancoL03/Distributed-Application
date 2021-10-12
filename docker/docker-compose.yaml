@@ -1,0 +1,20 @@
+version: '3'
+services:
+  mysql:
+    image: 'mysql:8'
+    container_name: dockerMysql
+    ports:
+    -  '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=school
+      - MYSQL_USER=a20da10
+      - MYSQL_PASSWORD=secret
+  glassfish:
+    build:
+      context: ./glassfish            #use the self-bulid image
+    container_name: dockerGlassfish
+    ports:
+      - '8080:8080'
+    volumes:
+    - ../out/artifacts/deploy:/usr/local/glassfish5/glassfish/domains/domain1/autodeploy
